@@ -1,0 +1,15 @@
+name = "chat-mastra-worker"
+main = ".mastra/output/index.mjs"
+compatibility_date = "2022-07-12"
+
+# 可选：指定兼容性标志
+compatibility_flags = ["nodejs_compat"]
+
+# 可选：环境变量配置
+# [vars]
+ENVIRONMENT = "production"
+
+# 可选：绑定资源
+# [[kv_namespaces]]
+# binding = "MY_KV"
+# id = "xxxxxx"

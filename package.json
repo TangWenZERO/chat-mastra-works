@@ -7,7 +7,8 @@
     "test": "echo \"Error: no test specified\" && exit 1",
     "dev": "mastra dev",
     "build": "mastra build",
-    "start": "mastra start"
+    "start": "mastra start",
+    "deplay": "npx wrangler deploy"
   },
   "keywords": [],
   "author": "",
@@ -19,6 +20,7 @@
   "dependencies": {
     "@ai-sdk/openai": "^1.0.0",
     "@mastra/core": "^0.15.2",
+    "@mastra/deployer-cloudflare": "^0.13.2",
     "@mastra/libsql": "^0.13.7",
     "@mastra/loggers": "^0.10.9",
     "@mastra/memory": "^0.14.2",
@@ -27,6 +29,7 @@
   "devDependencies": {
     "@types/node": "^24.3.0",
     "mastra": "^0.11.2",
-    "typescript": "^5.9.2"
+    "typescript": "^5.9.2",
+    "wrangler": "^4.33.1"
   }
 }
