@@ -8,7 +8,8 @@
     "dev": "mastra dev",
     "build": "mastra build",
     "start": "mastra start",
-    "deplay": "wrangler deploy"
+    "deplay": "wrangler deploy",
+    "deplay:dev": "wrangler dev"
   },
   "keywords": [],
   "author": "",
