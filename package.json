@@ -18,6 +18,7 @@
   },
   "dependencies": {
     "@ai-sdk/openai": "^1.0.0",
+    "@libsql/client": "^0.15.14",
     "@mastra/core": "^0.15.2",
     "@mastra/deployer-cloudflare": "^0.13.2",
     "@mastra/libsql": "^0.13.7",
@@ -28,6 +29,7 @@
   "devDependencies": {
     "@types/node": "^24.3.0",
     "mastra": "^0.11.2",
-    "typescript": "^5.9.2"
+    "typescript": "^5.9.2",
+    "wrangler": "^4.33.1"
   }
 }
