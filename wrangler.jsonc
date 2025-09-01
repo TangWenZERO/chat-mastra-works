@@ -1,0 +1,36 @@
+{
+  "name": "chat-mastra-works",
+  "main": ".mastra/output/index.mjs",
+  "compatibility_date": "2024-09-23",
+  "compatibility_flags": [
+    "nodejs_compat",
+    "nodejs_compat_populate_process_env"
+  ],
+  "workers_dev": true,
+  "vars": {
+    "ENVIRONMENT": "production",
+    "OPENAI_API_KEY": "you openai api key"
+  },
+  "build": {
+    "command": "npm run build",
+    "watch_dir": "src"
+  },
+  "env": {
+    "development": {
+      "vars": {
+        "ENVIRONMENT": "development",
+        "OPENAI_API_KEY": "you openai api key"
+      }
+    },
+    "production": {
+      "vars": {
+        "ENVIRONMENT": "production",
+        "OPENAI_API_KEY": "you openai api key"
+      }
+    }
+  },
+  "kv_namespaces": [],
+  "d1_databases": [],
+  "r2_buckets": [],
+  "queues": []
+}
