@@ -1,15 +1,13 @@
-name = "chat-mastra-worker"
-main = ".mastra/output/index.mjs"
-compatibility_date = "2022-07-12"
+# wrangler.toml
+name = "chat-mastra-works"           # ← 日志里 CI 期望的名字
+main = ".mastra/output/index.mjs"    # ← mastra build 的入口
+compatibility_date = "2024-09-23"    # ← 日志提示的最低要求
+compatibility_flags = ["nodejs_compat"]  # 提供 buffer/crypto/events/path/stream/util/assert 等
 
-# 可选：指定兼容性标志
-compatibility_flags = ["nodejs_compat"]
+workers_dev = true
 
-# 可选：环境变量配置
-# [vars]
-ENVIRONMENT = "production"
+# 如需环境变量：
+[vars]
+# MASTRA_* 等放这里
 
-# 可选：绑定资源
-# [[kv_namespaces]]
-# binding = "MY_KV"
-# id = "xxxxxx"
+# 如需 KV / D1 / R2 / Queues 等，按需声明
