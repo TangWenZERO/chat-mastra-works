@@ -22,4 +22,13 @@ export const mastra = new Mastra({
       NODE_ENV: "production",
     },
   }),
+  // 添加CORS配置
+  server: {
+    cors: {
+      origin: "*",
+      credentials: true,
+      allowHeaders: ["Content-Type", "Authorization"],
+      exposeHeaders: ["Content-Length", "X-Requested-With"],
+    },
+  },
 });
