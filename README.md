@@ -107,3 +107,76 @@ pnpm deplay:dev
 2. 部署前需配置正确的 `OPENAI_API_KEY`
 3. 项目使用 ESM 模块系统 (type: "module")
 4. 构建输出位于 `.mastra/output/index.mjs`
+
+## 使用 Mastra 接口实现对话（简明）
+
+下面是最小可用的对话接口用法，便于前端直接调用后端的 Mastra Agent。
+
+### 1) 启动后端（本地）
+
+```bash
+export OPENAI_API_KEY=sk-xxxx
+pnpm dev
+```
+
+默认本地地址为 `http://localhost:4112`。
+
+### 2) 对话接口
+
+- 路径: `POST /api/agents/weatherAgent/generate`
+- 说明: 传入对话历史 `messages`（支持多轮），Agent 会自动调用内置的 `weatherTool` 获取天气信息并生成回复。
+
+请求体示例（单轮）:
+
+```json
+{
+  "messages": [{ "role": "user", "content": "帮我查下上海今天的天气" }]
+}
+```
+
+请求体示例（多轮对话）:
+
+```json
+{
+  "messages": [
+    { "role": "system", "content": "You are a helpful assistant." },
+    { "role": "user", "content": "北京今天天气怎么样？" },
+    { "role": "assistant", "content": "好的，我来查询北京的天气。" },
+    { "role": "user", "content": "那周末适合户外活动吗？" }
+  ]
+}
+```
+
+返回格式会包含生成的文本（字段名可能为 `output` 或其他结构化字段，前端可做兼容处理）。
+
+### 3) curl 快速验证
+
+```bash
+curl -X POST http://localhost:4112/api/agents/weatherAgent/generate \
+  -H 'Content-Type: application/json' \
+  -d '{"messages":[{"role":"user","content":"深圳今天天气如何？"}]}'
+```
+
+### 4) 前端最小调用示例（fetch）
+
+```ts
+const baseUrl = import.meta.env.VITE_MASTRA_API_URL || "http://localhost:4112";
+
+async function askChat(messages: { role: string; content: string }[]) {
+  const res = await fetch(`${baseUrl}/api/agents/weatherAgent/generate`, {
+    method: "POST",
+    headers: { "Content-Type": "application/json" },
+    body: JSON.stringify({ messages }),
+  });
+  const data = await res.json();
+  if (!res.ok || (data && data.error)) {
+    throw new Error(data?.message || "Mastra API error");
+  }
+  return data.output ?? JSON.stringify(data);
+}
+```
+
+提示:
+
+- CORS 已在 `src/mastra/index.ts` 中开启，前端可直接请求本地后端；生产环境建议将 `origin` 收紧为你的前端域名。
+- 请务必通过环境变量提供 `OPENAI_API_KEY`，避免将密钥写入前端或明文配置。
