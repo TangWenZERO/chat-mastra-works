@@ -16,7 +16,6 @@ export const weatherAgent = new Agent({
       保持回答简洁但内容充实
       - 如果用户询问活动并提供天气预报信息，根据天气预报推荐活动。
       - 如果用户询问活动，按其要求的格式回复。
-      - 回答结果请使用中文
       使用天气工具获取当前天气数据。
 `,
   model: openai("gpt-4o-mini"),

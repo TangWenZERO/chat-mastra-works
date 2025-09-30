@@ -1,30 +1,52 @@
 {
+  // Cloudflare Worker 项目的名称
   "name": "chat-mastra-works",
+  // Worker 入口文件路径
   "main": ".mastra/output/index.mjs",
+  // Cloudflare 平台兼容性日期，用于锁定行为版本
   "compatibility_date": "2024-09-23",
+  // Cloudflare Worker 所需的兼容性标志
   "compatibility_flags": [
+    // 启用 Node.js 兼容层
     "nodejs_compat",
+    // 自动填充 process.env 变量
     "nodejs_compat_populate_process_env"
   ],
+  // 是否启用 workers.dev 预览域名
   "workers_dev": true,
+  // 默认环境变量配置
   "vars": {
+    // 默认部署环境标识
     "ENVIRONMENT": "production",
+    // OpenAI API 密钥占位符
     "OPENAI_API_KEY": "you openai api key"
   },
+  // 本地构建配置
   "build": {
+    // 构建 Worker 的命令
     "command": "npm run build",
+    // 监听输出目录以便热更新
     "watch_dir": ".mastra/output"
   },
+  // 多环境配置
   "env": {
+    // 开发环境配置
     "development": {
+      // 开发环境的环境变量
       "vars": {
+        // 将环境标识设置为 development
         "ENVIRONMENT": "development",
+        // 开发环境下的 OpenAI API 密钥占位符
         "OPENAI_API_KEY": "you openai api key"
       }
     },
+    // 生产环境配置
     "production": {
+      // 生产环境的环境变量
       "vars": {
+        // 将环境标识设置为 production
         "ENVIRONMENT": "production",
+        // 生产环境下的 OpenAI API 密钥占位符
         "OPENAI_API_KEY": "you openai api key"
       }
     }
